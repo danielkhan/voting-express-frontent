@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressStatsd = require('express-statsd');
+const appstatsd = require('appmetrics-statsd').StatsD();
 
 const indexRouter = require('./routes/index');
 
