@@ -3,7 +3,10 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+
 const appstatsd = require('appmetrics-statsd').StatsD();
+const appsZipkin = require('appmetrics-zipkin');
 
 const indexRouter = require('./routes/index');
 
@@ -11,7 +14,7 @@ const app = express();
 
 const ips = [];
 
-var appzip = require('appmetrics-zipkin')({
+const appzip = appsZipkin({
   host: 'localhost',
   port: 9411,
   serviceName:'express-frontend',
