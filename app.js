@@ -1,5 +1,3 @@
-const tracing = require('@opencensus/nodejs');
-tracing.start();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -11,6 +9,13 @@ const appstatsd = require('appmetrics-statsd').StatsD();
 const indexRouter = require('./routes/index');
 
 const app = express();
+
+var appzip = require('appmetrics-zipkin')({
+  host: 'localhost',
+  port: 9411,
+  serviceName:'express-frontend',
+  sampleRate: 1.0
+});
 
 app.use(expressStatsd());
 
