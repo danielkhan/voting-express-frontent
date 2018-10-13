@@ -3,9 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const appstatsd = require('appmetrics-statsd').StatsD({
-  global_tags: ['application=express-frontend']
-});
+const appstatsd = require('appmetrics-statsd').StatsD();
 const appsZipkin = require('appmetrics-zipkin');
 
 const indexRouter = require('./routes/index');
