@@ -6,7 +6,6 @@ const axios = require('axios');
 router.get('/', async (req, res, next) => {
 
   const httpres = await axios.get('https://us-central1-sai-research.cloudfunctions.net/http');
-  console.log(httpres.response.data);
   res.render('index', { title: 'Express' });
 });
 
