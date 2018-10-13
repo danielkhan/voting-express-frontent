@@ -10,6 +10,8 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+const ips = [];
+
 var appzip = require('appmetrics-zipkin')({
   host: 'localhost',
   port: 9411,
@@ -18,6 +20,11 @@ var appzip = require('appmetrics-zipkin')({
 });
 
 app.use(expressStatsd());
+
+app.use((req, res, next) => {
+  const ip = let ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  ips.push(ip);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
