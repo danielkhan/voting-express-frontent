@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const expressStatsd = require('express-statsd');
 const appstatsd = require('appmetrics-statsd').StatsD();
 
 const indexRouter = require('./routes/index');
@@ -18,8 +17,6 @@ var appzip = require('appmetrics-zipkin')({
   serviceName:'express-frontend',
   sampleRate: 1.0
 });
-
-app.use(expressStatsd());
 
 app.use((req, res, next) => {
   const ip = let ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
