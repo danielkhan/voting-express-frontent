@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const appstatsd = require('appmetrics-statsd').StatsD({
-  global_tags: ['express-frontend']
+  global_tags: ['application=express-frontend']
 });
 const appsZipkin = require('appmetrics-zipkin');
 
