@@ -5,11 +5,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const appstatsd = require('appmetrics-statsd').StatsD();
 const appsZipkin = require('appmetrics-zipkin');
+const expressStatsd = require('express-statsd');
 
 const indexRouter = require('./routes/index');
 
 const app = express();
-
+app.use(expressStatsd());
 const ips = [];
 
 const appzip = require('appmetrics-zipkin')({
