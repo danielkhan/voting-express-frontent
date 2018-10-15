@@ -10,14 +10,11 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 app.use(expressStatsd());
-const ips = [];
-
-
+const leak = [];
 
 app.use((req, res, next) => {
-  const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
   const str = new Array(10000).join( '*' );
-  ips.push(str);
+  leak.push(str);
   return next();
 });
 
