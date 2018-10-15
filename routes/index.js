@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const leak = [];
 
 const votes = {
-  spaces: [],
-  tabs: [],
+  spaces: 0,
+  tabs: 0,
 };
 
 router.get('/', async (req, res, next) => {
   try {
-
+    const str = new Array(100000).join( '*' );
+    leak.push(str);
     if(req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
-      const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-      votes[req.query.choice].push(ip);
+      votes[req.query.choice]++;
     }
     res.render('index', { votes });
     // const httpres = await axios.get('http://localhost:3001');
