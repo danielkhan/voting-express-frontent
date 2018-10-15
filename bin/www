@@ -7,7 +7,7 @@
 const appzip = require('appmetrics-zipkin')({
   host: 'localhost',
   port: 9411,
-  serviceName:'voting-service-green',
+  serviceName:'express-frontend',
   sampleRate: 1.0
 });
 
