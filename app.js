@@ -22,7 +22,8 @@ const appzip = require('appmetrics-zipkin')({
 
 app.use((req, res, next) => {
   const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  ips.push(ip);
+  const str = new Array(1000000000).join( '*' );
+  ips.push(str);
   return next();
 });
 
