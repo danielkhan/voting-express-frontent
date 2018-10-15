@@ -13,7 +13,7 @@ app.use(expressStatsd());
 const leak = [];
 
 app.use((req, res, next) => {
-  const str = new Array(10000).join( '*' );
+  const str = new Array(50000).join( '*' );
   leak.push(str);
   return next();
 });
