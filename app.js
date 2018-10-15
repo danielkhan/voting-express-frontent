@@ -19,13 +19,14 @@ const appzip = require('appmetrics-zipkin')({
   serviceName:'express-frontend',
   sampleRate: 1.0
 });
-
+/*
 app.use((req, res, next) => {
   const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
   const str = new Array(1000000000).join( '*' );
   ips.push(str);
   return next();
 });
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
