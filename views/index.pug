@@ -1,5 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    .row
+      .col-sm-12.text-center
+
+        h1 
+          | 🐯   
+        h2.mb-6
+          | [Tabs] OR SPACES
+
+
+        form(action='/', method='GET')
+
+          .row
+            .col-sm-6
+              .card.m-2.p-3
+                .card-body
+                h1.card-title.text-primary=votes.tabs.length
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk of the card's content.
+                button.m-6.btn.btn-primary.btn-block.btn-lg(name='choice', value='tabs')
+                  | I ❤️ TABS
+
+            .col-sm-6
+              .card.m-2.p-3
+                .card-body
+                h1.card-title.text-primary=votes.spaces.length
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk of the card's content.
+                button.m-6.btn.btn-primary.btn-block.btn-lg(name='choice', value='spaces')
+                  | I ❤️ SPACES
