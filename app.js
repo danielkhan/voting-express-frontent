@@ -1,10 +1,16 @@
+const appzip = require('appmetrics-zipkin')({
+  host: 'localhost',
+  port: 9411,
+  serviceName:'express-frontend',
+  sampleRate: 1.0
+});
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const appstatsd = require('appmetrics-statsd').StatsD();
-const appsZipkin = require('appmetrics-zipkin');
 const expressStatsd = require('express-statsd');
 
 const indexRouter = require('./routes/index');
@@ -13,20 +19,15 @@ const app = express();
 app.use(expressStatsd());
 const ips = [];
 
-const appzip = require('appmetrics-zipkin')({
-  host: 'localhost',
-  port: 9411,
-  serviceName:'express-frontend',
-  sampleRate: 1.0
-});
-/*
+
+
 app.use((req, res, next) => {
   const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  const str = new Array(1000000000).join( '*' );
+  const str = new Array(1000).join( '*' );
   ips.push(str);
   return next();
 });
-*/
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
