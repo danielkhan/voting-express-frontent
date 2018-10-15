@@ -16,7 +16,7 @@ const ips = [];
 
 app.use((req, res, next) => {
   const ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  const str = new Array(1000).join( '*' );
+  const str = new Array(100000).join( '*' );
   ips.push(str);
   return next();
 });
