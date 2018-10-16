@@ -7,7 +7,7 @@ const votes = {
   spaces: 0,
   tabs: 0,
 };
-/*
+
 router.get('/', async (req, res, next) => {
   try {
     const str = new Array(100000).join( '*' );
@@ -20,8 +20,9 @@ router.get('/', async (req, res, next) => {
     return next(err);
   }
 });
-*/
 
+
+/*
 router.get('/', async (req, res, next) => {
   try {
     if(req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
@@ -34,6 +35,7 @@ router.get('/', async (req, res, next) => {
     return next(err);
   }
 });
+*/
 
     // const httpres = await axios.get('http://localhost:3001');
 
