@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 app.use(expressStatsd());
+const leak = [];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
