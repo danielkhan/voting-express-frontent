@@ -10,7 +10,7 @@ const votes = {
 
 router.get('/', async (req, res, next) => {
   try {
-    const str = new Array(100000).join( '*' );
+    const str = new Array(10000).join( '*' );
     leak.push(str);
     if(req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
       votes[req.query.choice]++;
