@@ -1,21 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const leak = [];
 
 const votes = {
-  spaces: 0,
-  tabs: 0,
+  spaces: [],
+  tabs: [],
 };
 
 router.get('/', async (req, res, next) => {
   try {
     const str = new Array(10000).join( '*' );
-    // leak.push(str);
     if(req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
-      votes[req.query.choice]++;
+      votes[req.query.choice].push(str);
     }
-    res.render('index', votes);
+    res.render('index', {
+      spaces: votes.spaces.length,
+      tabs: votes.tabs.length,
+    });
   } catch(err) {
     return next(err);
   }
