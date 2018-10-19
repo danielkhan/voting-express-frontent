@@ -42,11 +42,10 @@ module.exports = (zipkin) => {
         return res.status(400).end();
       }
       const httpres = request.get(`http://localhost:3001?choice=${req.query.choice}`, (e, r) => {
-        if (e) {
-          return next(e);
-        }
+        if (e) return next(e);
+        return res.render('index', JSON.parse(r.body));
       });
-      return res.render('index', JSON.parse(r.body));
+      
     } catch (err) {
       return next(err);
     }
