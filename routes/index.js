@@ -38,7 +38,7 @@ module.exports = (zipkin) => {
   router.get('/bg', async (req, res, next) => {
     try {
 
-      const request = wrapRequest(request, { tracer, 'service-gateway' });
+      const request = wrapRequest(request, { tracer, remoteServiceName: 'service-gateway' })
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
         return res.status(400).end();
