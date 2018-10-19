@@ -12,7 +12,7 @@ const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkinMiddleware);
+app.use(zipkinMiddleware('express-frontend'));
 app.use(expressStatsd());
 
 

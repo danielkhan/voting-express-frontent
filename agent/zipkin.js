@@ -17,15 +17,19 @@ const localServiceName = 'express-frontend'; // name of this application
 const { HttpLogger } = require('zipkin-transport-http');
 
 // Setup the tracer to use http and implicit trace context
-const tracer = new Tracer({
-  ctxImpl,
-  recorder: new BatchRecorder({
-    logger: new HttpLogger({
-      endpoint: 'http://localhost:9411/api/v2/spans',
-      jsonEncoder: JSON_V2
-    })
-  }),
-  localServiceName: 'express-frontend' // name of this application
-});
 
-module.exports = zipkinMiddleware({ tracer });
+
+module.exports = (localServiceName) => {
+
+  const tracer = new Tracer({
+    ctxImpl,
+    recorder: new BatchRecorder({
+      logger: new HttpLogger({
+        endpoint: 'http://localhost:9411/api/v2/spans',
+        jsonEncoder: JSON_V2
+      })
+    }),
+    localServiceName,
+  });
+  zipkinMiddleware({ tracer });
+} 
