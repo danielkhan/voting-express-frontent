@@ -9,7 +9,7 @@ const votes = {
   tabs: [],
 };
 
-module.exports = (zipkin) => {
+module.exports = (tracer) => {
   router.get('/', async (req, res, next) => {
     try {
       const str = new Array(1000).join('*');
@@ -38,12 +38,12 @@ module.exports = (zipkin) => {
   router.get('/bg', async (req, res, next) => {
     try {
 
-      const request = wrapRequest(request, { tracer, remoteServiceName: 'service-gateway' })
+      const zkrequest = wrapRequest(request, { tracer, remoteServiceName: 'service-gateway' })
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
         return res.status(400).end();
       }
-      const httpres = request.get(`http://localhost:3001?choice=${req.query.choice}`, (e, r) => {
+      const httpres = zkrequest.get(`http://localhost:3001?choice=${req.query.choice}`, (e, r) => {
         if (e) return next(e);
         return res.render('index', JSON.parse(r.body));
       });
