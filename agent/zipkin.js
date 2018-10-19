@@ -28,6 +28,4 @@ const tracer = new Tracer({
   localServiceName: 'express-frontend' // name of this application
 });
 
-module.exports = {
-  return zipkinMiddleware({ tracer });
-}
+module.exports = zipkinMiddleware({ tracer });
