@@ -8,6 +8,7 @@ const {
 const zipkinMiddleware = require('zipkin-instrumentation-express').expressMiddleware;
 
 const ctxImpl = new ExplicitContext();
+const CLSContext = require('zipkin-context-cls');
 const localServiceName = 'express-frontend';
 
 // const CLSContext = require('zipkin-context-cls');
@@ -15,7 +16,7 @@ const { HttpLogger } = require('zipkin-transport-http');
 
 // Setup the tracer to use http and implicit trace context
 const tracer = new Tracer({
-  ctxImpl,
+  ctxImpl: new CLSContext('zipkin'),
   recorder: new BatchRecorder({
     logger: new HttpLogger({
       endpoint: 'http://localhost:9411/api/v2/spans',
