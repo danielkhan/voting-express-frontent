@@ -27,3 +27,15 @@ module.exports = (localServiceName) => {
     request: (remoteServiceName) => wrapRequest(request, { tracer, remoteServiceName }),
   }
 } 
+
+/*
+// Usage:
+// Express middleware:
+
+const zipkin = require('./agent/zipkin')('<Local Service Name>');
+const app = express();
+app.use(zipkin.middleware());
+
+// To get a wrapped request object:
+const request = zipkin.request('<Remote Service Name>');
+*/
