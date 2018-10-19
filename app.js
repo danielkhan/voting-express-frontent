@@ -1,9 +1,10 @@
+const zipkin = require('./agent/zipkin')('express-frontend');
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const zipkin = require('./agent/zipkin')();
 
 const indexRouter = require('./routes/index');
 
@@ -12,7 +13,7 @@ const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkin.middleware('express-frontend'));
+app.use(zipkin.middleware());
 app.use(expressStatsd());
 
 // view engine setup
