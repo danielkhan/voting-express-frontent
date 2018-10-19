@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const wrapRequest = require('zipkin-instrumentation-request');
+const request = require('request');
 
 const votes = {
   spaces: [],
@@ -36,7 +38,7 @@ module.exports = (zipkin) => {
   router.get('/bg', async (req, res, next) => {
     try {
 
-      const request = zipkin.request('service-gateway');
+      const request = wrapRequest(request, { tracer, 'service-gateway' });
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
         return res.status(400).end();

@@ -1,9 +1,35 @@
+const {
+  Tracer,
+  BatchRecorder,
+  ExplicitContext,
+  jsonEncoder: { JSON_V2 }
+} = require('zipkin');
+
+const zipkinMiddleware = require('zipkin-instrumentation-express').expressMiddleware;
+
+const ctxImpl = new ExplicitContext();
+const localServiceName = 'express-frontend';
+
+// const CLSContext = require('zipkin-context-cls');
+const { HttpLogger } = require('zipkin-transport-http');
+
+// Setup the tracer to use http and implicit trace context
+const tracer = new Tracer({
+  ctxImpl,
+  recorder: new BatchRecorder({
+    logger: new HttpLogger({
+      endpoint: 'http://localhost:9411/api/v2/spans',
+      jsonEncoder: JSON_V2
+    })
+  }),
+  localServiceName,
+});
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const zipkin = require('./agent/zipkin')('express-frontend');
 
 const indexRouter = require('./routes/index');
 
@@ -12,7 +38,7 @@ const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkin.middleware());
+app.use(zipkinMiddleware(tracer));
 app.use(expressStatsd());
 
 
@@ -27,7 +53,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter(zipkin));
+app.use('/', indexRouter(tracer));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
