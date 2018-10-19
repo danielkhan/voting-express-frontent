@@ -22,11 +22,11 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/zipkin', (err, req, res) => {
+router.get('/zipkin', (req, res, next) => {
   return res.redirect('/:9411');
 });
 
-router.get('/grafana', (err, req, res) => {
+router.get('/grafana', (req, res, next) => {
   return res.redirect('/:8080');
 });
 
