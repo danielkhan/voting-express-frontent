@@ -38,7 +38,8 @@ const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkinMiddleware(tracer));
+app.use(zipkinMiddleware({ tracer }));
+
 app.use(expressStatsd());
 
 
