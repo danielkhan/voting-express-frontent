@@ -23,14 +23,17 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/zipkin', (req, res, next) => {
-  return res.redirect('/:9411');
+  const host = req.headers['host']
+  return res.redirect(`http://${host}:9411`);
 });
 
 router.get('/grafana', (req, res, next) => {
-  return res.redirect('/:8080');
+  const host = req.headers['host']
+  return res.redirect(`http://${host}:8080`);
 });
 
 router.get('/bg', async (req, res, next) => {
+
   try {
     if(req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
       return res.status(400).end();
