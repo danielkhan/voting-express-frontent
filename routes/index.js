@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
     if(req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
       votes[req.query.choice]++;
     }
-    res.render('index', { votes });
+    res.render('index', votes);
   } catch(err) {
     return next(err);
   }
