@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const wrapRequest = require('zipkin-instrumentation-request');
-const request = require('request');
 
 const votes = {
   spaces: [],
   tabs: [],
 };
 
-module.exports = (tracer) => {
+module.exports = (zipkin) => {
   router.get('/', async (req, res, next) => {
     try {
       const str = new Array(1000).join('*');
@@ -38,12 +36,12 @@ module.exports = (tracer) => {
   router.get('/bg', async (req, res, next) => {
     try {
 
-      const zkrequest = wrapRequest(request, { tracer, remoteServiceName: 'service-gateway' })
+      const request = zipkin.request('service-gateway');
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
         return res.status(400).end();
       }
-      const httpres = zkrequest.get(`http://localhost:3001?choice=${req.query.choice}`, (e, r) => {
+      const httpres = request.get(`http://localhost:3001?choice=${req.query.choice}`, (e, r) => {
         if (e) return next(e);
         return res.render('index', JSON.parse(r.body));
       });
