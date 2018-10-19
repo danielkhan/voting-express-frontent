@@ -9,7 +9,7 @@ const votes = {
 
 router.get('/', async (req, res, next) => {
   try {
-    const str = new Array(1000).join( '*' );
+    const str = new Array(100).join( '*' );
     if(req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
       votes[req.query.choice].push(str);
     }

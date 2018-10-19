@@ -3,14 +3,17 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const appstatsd = require('appmetrics-statsd').StatsD();
-const expressStatsd = require('express-statsd');
+
 
 const indexRouter = require('./routes/index');
 
+const appstatsd = require('appmetrics-statsd').StatsD();
+const expressStatsd = require('express-statsd');
+
 const app = express();
 app.use(expressStatsd());
-const leak = [];
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
