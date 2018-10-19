@@ -17,8 +17,10 @@
     "jaeger-client": "^3.13.0",
     "morgan": "~1.9.0",
     "pug": "^2.0.3",
+    "request": "^2.88.0",
     "zipkin": "^0.14.2",
     "zipkin-context-cls": "^0.14.2",
-    "zipkin-instrumentation-express": "^0.14.2"
+    "zipkin-instrumentation-express": "^0.14.2",
+    "zipkin-instrumentation-request": "^0.14.2"
   }
 }

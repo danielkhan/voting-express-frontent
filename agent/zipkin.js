@@ -6,7 +6,8 @@ const {
 } = require('zipkin');
 
 const zipkinMiddleware = require('zipkin-instrumentation-express').expressMiddleware;
-
+const wrapRequest = require('zipkin-instrumentation-request');
+const request = require('request');
 const ctxImpl = new ExplicitContext();
 // const recorder = new ConsoleRecorder();
 const localServiceName = 'express-frontend'; // name of this application
@@ -17,6 +18,8 @@ const localServiceName = 'express-frontend'; // name of this application
 const { HttpLogger } = require('zipkin-transport-http');
 
 // Setup the tracer to use http and implicit trace context
+
+
 
 
 module.exports = (localServiceName) => {
@@ -31,5 +34,9 @@ module.exports = (localServiceName) => {
     }),
     localServiceName,
   });
-  return zipkinMiddleware({ tracer });
+
+  return {
+    middleware: () => zipkinMiddleware({ tracer }),
+    request: (remoteServiceName) => wrapRequest(request, { tracer, remoteServiceName }),
+  }
 } 

@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const zipkinMiddleware = require('./agent/zipkin');
+const zipkin = require('./agent/zipkin')('express-frontend');
 
 const indexRouter = require('./routes/index');
 
@@ -12,7 +12,7 @@ const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkinMiddleware('express-frontend'));
+app.use(zipkin.middleware());
 app.use(expressStatsd());
 
 
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', indexRouter(zipkin));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
