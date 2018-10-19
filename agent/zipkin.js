@@ -31,5 +31,5 @@ module.exports = (localServiceName) => {
     }),
     localServiceName,
   });
-  zipkinMiddleware({ tracer });
+  return zipkinMiddleware({ tracer });
 } 
