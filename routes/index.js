@@ -23,12 +23,12 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/zipkin', (req, res, next) => {
-  const host = req.headers['host']
+  const host = req.headers['host'];
   return res.redirect(`http://${host}:9411`);
 });
 
 router.get('/grafana', (req, res, next) => {
-  const host = req.headers['host']
+  const host = req.headers['host'];
   return res.redirect(`http://${host}:8080`);
 });
 
