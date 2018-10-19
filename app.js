@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const zipkinMiddleware = require('./agent/zipkin');
 
 const indexRouter = require('./routes/index');
 
@@ -11,6 +11,8 @@ const appstatsd = require('appmetrics-statsd').StatsD();
 const expressStatsd = require('express-statsd');
 
 const app = express();
+
+app.use(zipkinMiddleware);
 app.use(expressStatsd());
 
 
