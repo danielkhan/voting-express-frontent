@@ -37,6 +37,6 @@ module.exports = (localServiceName) => {
 
   return {
     middleware: () => zipkinMiddleware({ tracer }),
-    request: (remoteServiceName) => wrapRequest(request, { tracer, remoteServiceName }),
+    request: (remoteServiceName) => wrapRequest(request, { tracer }),
   }
 } 
