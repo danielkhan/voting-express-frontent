@@ -22,9 +22,11 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/zipkin', (err, req, res) => {
+  return res.redirect('/:9411');
+});
 
-/*
-router.get('/', async (req, res, next) => {
+router.get('/bg', async (req, res, next) => {
   try {
     if(req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
       return res.status(400).end();
@@ -36,7 +38,7 @@ router.get('/', async (req, res, next) => {
     return next(err);
   }
 });
-*/
+
 
     // const httpres = await axios.get('http://localhost:3001');
 
