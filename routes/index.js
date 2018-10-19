@@ -26,6 +26,10 @@ router.get('/zipkin', (err, req, res) => {
   return res.redirect('/:9411');
 });
 
+router.get('/grafana', (err, req, res) => {
+  return res.redirect('/:8080');
+});
+
 router.get('/bg', async (req, res, next) => {
   try {
     if(req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
