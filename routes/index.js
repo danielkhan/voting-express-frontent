@@ -23,12 +23,12 @@ module.exports = (zipkin) => {
     }
   });
 
-  router.get('/zipkin', (req, res, next) => {
+  router.get('/traces', (req, res, next) => {
     const host = req.headers['host'];
     return res.redirect(`http://${host}:9411`);
   });
 
-  router.get('/grafana', (req, res, next) => {
+  router.get('/metrics', (req, res, next) => {
     const host = req.headers['host'];
     return res.redirect(`http://${host}:8080`);
   });
