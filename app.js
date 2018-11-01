@@ -5,7 +5,7 @@ const collectDefaultMetrics = prometheus.collectDefaultMetrics;
 const startGcStats = gcStats(prometheus.register); 
 startGcStats();
 // Probe every 5th second.
-collectDefaultMetrics({ timeout: 5000, prefix: 'frontend_' });
+collectDefaultMetrics({ timeout: 5000});
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
