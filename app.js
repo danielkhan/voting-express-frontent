@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter(zipkin));
 
-app.get('/metrics', (req.res,mext) => {
+app.get('/metrics', (req, res) => {
   return res.send(register.metrics());
 });
 
