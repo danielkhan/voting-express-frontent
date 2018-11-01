@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter(zipkin));
 
-app.get('/prometheus', (req, res) => {
+app.get('/metrics', (req, res) => {
   return res.send(registry.metrics());
 });
 
