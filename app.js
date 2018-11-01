@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter(zipkin));
 
 app.get('/prometheus', (req, res) => {
-  return res.send(register.metrics());
+  return res.send(registry.metrics());
 });
 
 // catch 404 and forward to error handler
