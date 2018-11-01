@@ -1,7 +1,7 @@
 const zipkin = require('./agent/zipkin')('express-frontend');
 const prometheus = require('prom-client');
 const gcStats = require('prometheus-gc-stats');
-const collectDefaultMetrics = client.collectDefaultMetrics;
+const collectDefaultMetrics = prometheus.collectDefaultMetrics;
 const startGcStats = gcStats(prometheus.register); 
 startGcStats();
 // Probe every 5th second.
