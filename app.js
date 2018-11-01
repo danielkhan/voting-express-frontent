@@ -1,11 +1,12 @@
 const zipkin = require('./agent/zipkin')('express-frontend');
 const client = require('prom-client');
-const registry = new client.Registry();
+
 
 const collectDefaultMetrics = client.collectDefaultMetrics;
-
+const Registry = new client.Registry();
+const register = new Registry();
 // Probe every 5th second.
-collectDefaultMetrics({ timeout: 5000 });
+collectDefaultMetrics({ timeout: 5000, register });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -35,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter(zipkin));
 
 app.get('/metrics', (req, res) => {
-  return res.send(registry.metrics());
+  return res.send(register.metrics());
 });
 
 // catch 404 and forward to error handler
