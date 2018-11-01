@@ -3,10 +3,10 @@ const client = require('prom-client');
 
 
 const collectDefaultMetrics = client.collectDefaultMetrics;
-const Registry = new client.Registry();
+const Registry = new client.Registry;
 const register = new Registry();
 // Probe every 5th second.
-collectDefaultMetrics({ timeout: 5000, register });
+collectDefaultMetrics({ timeout: 5000, register, prefix: 'frontend_' });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
