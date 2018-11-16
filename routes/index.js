@@ -25,7 +25,7 @@ module.exports = (zipkin) => {
 
   router.get('/traces', (req, res, next) => {
     const host = req.headers['host'];
-    return res.redirect(`http://${host}:9411`);
+    return res.redirect(`http://${host}:16686`);
   });
 
   router.get('/metrics', (req, res, next) => {
