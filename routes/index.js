@@ -30,7 +30,7 @@ module.exports = (zipkin) => {
 
   router.get('/metrics', (req, res, next) => {
     const host = req.headers['host'];
-    return res.redirect(`http://${host}:8080`);
+    return res.redirect(`http://${host}:3000`);
   });
 
   router.get('/bg', async (req, res, next) => {
