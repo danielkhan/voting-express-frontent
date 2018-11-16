@@ -1,3 +1,5 @@
+const appstatsd = require('appmetrics-statsd').StatsD();
+
 const zipkin = require('./agent/zipkin')('express-frontend');
 const prometheus = require('prom-client');
 const gcStats = require('prometheus-gc-stats');
