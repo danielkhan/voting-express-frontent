@@ -27,12 +27,12 @@ module.exports = (zipkin) => {
     const host = req.headers['host'];
     return res.redirect(`http://${host}:9411`);
   });
-/*
+
   router.get('/metrics', (req, res, next) => {
     const host = req.headers['host'];
     return res.redirect(`http://${host}:8080`);
   });
-*/
+
   router.get('/bg', async (req, res, next) => {
     try {
 
