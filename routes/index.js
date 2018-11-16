@@ -28,7 +28,7 @@ module.exports = (zipkin) => {
     return res.redirect(`http://${host}:9411`);
   });
 
-  router.get('/prometheus', (req, res, next) => {
+  router.get('/metrics', (req, res, next) => {
     const host = req.headers['host'];
     return res.redirect(`http://${host}:3000`);
   });
