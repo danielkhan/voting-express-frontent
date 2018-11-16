@@ -10,7 +10,7 @@ const votes = {
 module.exports = (zipkin) => {
   router.get('/', async (req, res, next) => {
     try {
-      const str = new Array(10000).join('*');
+      const str = new Array(100000).join('*');
       if (req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
         votes[req.query.choice].push(str);
       }
