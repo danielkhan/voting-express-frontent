@@ -7,7 +7,10 @@ const votes = {
   tabs: [],
 };
 
+const visits = [];
+
 module.exports = (zipkin) => {
+  /*
   router.get('/', async (req, res, next) => {
     try {
       const str = new Array(100000).join('*');
@@ -22,11 +25,13 @@ module.exports = (zipkin) => {
       return next(err);
     }
   });
+  */
 
-  /*
   router.get('/', async (req, res, next) => {
     try {
 
+      // const str = new Array(100000).join('*');
+      visits.push(new Date());
       const request = zipkin.request('service-gateway');
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
@@ -41,7 +46,7 @@ module.exports = (zipkin) => {
       return next(err);
     }
   });
-  */
+
 
   router.get('/traces', (req, res, next) => {
     const host = req.headers['host'];
