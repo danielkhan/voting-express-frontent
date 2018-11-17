@@ -23,17 +23,8 @@ module.exports = (zipkin) => {
     }
   });
 
-  router.get('/traces', (req, res, next) => {
-    const host = req.headers['host'];
-    return res.redirect(`http://${host}:16686`);
-  });
-
-  router.get('/metrics', (req, res, next) => {
-    const host = req.headers['host'];
-    return res.redirect(`http://${host}:3000`);
-  });
-
-  router.get('/bg', async (req, res, next) => {
+  /*
+  router.get('/', async (req, res, next) => {
     try {
 
       const request = zipkin.request('service-gateway');
@@ -50,6 +41,18 @@ module.exports = (zipkin) => {
       return next(err);
     }
   });
+  */
+
+  router.get('/traces', (req, res, next) => {
+    const host = req.headers['host'];
+    return res.redirect(`http://${host}:16686`);
+  });
+
+  router.get('/metrics', (req, res, next) => {
+    const host = req.headers['host'];
+    return res.redirect(`http://${host}:3000`);
+  });
+
 
   return router;
 }
