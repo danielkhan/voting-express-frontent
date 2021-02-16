@@ -6,6 +6,10 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@opentelemetry/api": "^0.16.0",
+    "@opentelemetry/exporter-jaeger": "^0.16.0",
+    "@opentelemetry/node": "^0.16.0",
+    "@opentelemetry/tracing": "^0.16.0",
     "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
     "dd-trace": "^0.12.0",
