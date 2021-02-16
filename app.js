@@ -1,11 +1,3 @@
-const zipkin = require('./agent/zipkin')('express-frontend');
-const prometheus = require('prom-client');
-const gcStats = require('prometheus-gc-stats');
-const collectDefaultMetrics = prometheus.collectDefaultMetrics;
-const startGcStats = gcStats(prometheus.register); 
-startGcStats();
-// Probe every 5th second.
-collectDefaultMetrics({ timeout: 5000});
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -14,13 +6,9 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 
-const appstatsd = require('appmetrics-statsd').StatsD();
-const expressStatsd = require('express-statsd');
 
 const app = express();
 
-app.use(zipkin.middleware());
-app.use(expressStatsd());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,11 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter(zipkin));
-
-app.get('/prometheus', (req, res) => {
-  return res.send(prometheus.register.metrics());
-});
+app.use('/', indexRouter());
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

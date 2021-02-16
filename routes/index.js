@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const request = require('request');
 
 const votes = {
   spaces: [],
@@ -9,30 +10,13 @@ const votes = {
 
 const visits = [];
 
-module.exports = (zipkin) => {
-  /*
-  router.get('/', async (req, res, next) => {
-    try {
-      const str = new Array(100000).join('*');
-      if (req.query.choice && req.query.choice === 'spaces' || req.query.choice === 'tabs') {
-        votes[req.query.choice].push(str);
-      }
-      res.render('index', {
-        spaces: votes.spaces.length,
-        tabs: votes.tabs.length,
-      });
-    } catch (err) {
-      return next(err);
-    }
-  });
-  */
+module.exports = () => {
 
   router.get('/', async (req, res, next) => {
     try {
 
       // const str = new Array(100000).join('*');
-      visits.push(new Date());
-      const request = zipkin.request('service-gateway');
+  
 
       if (req.query.choice && req.query.choice !== 'spaces' && req.query.choice !== 'tabs') {
         return res.status(400).end();

@@ -1,8 +1,10 @@
 module.exports = {
-  apps: [{
-    name: "Express Frontend",
-    script: "npm start"
-  }],
+  apps: [
+    {
+      name: "Express Frontend",
+      script: "npm start",
+    },
+  ],
   deploy: {
     // "production" is the environment name
     production: {
@@ -11,7 +13,7 @@ module.exports = {
       // SSH user
       user: "deploy",
       // SSH host
-      host: ["vote.demo.khan.io"],
+      host: ["otel-jaeger.research.dev.dynatracelabs.com"],
       // SSH options with no command-line flag, see 'man ssh'
       // can be either a single string or an array of strings
       ssh_options: "StrictHostKeyChecking=no",
@@ -29,7 +31,7 @@ module.exports = {
       // pre-deploy action
       // pre-deploy-local: "echo 'This is a local executed command'",
       // post-deploy action
-      'post-deploy': "npm install",
+      "post-deploy": "npm install",
     },
-  }
-}
+  },
+};
