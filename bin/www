@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+const tracing = require("./agent/tracing");
+tracing.init("frontend");
 
+const tracer = tracing.getTracer("frontend");
 /**
  * Get port from environment and store in Express.
  */
