@@ -32,8 +32,8 @@ module.exports.enableJaegerExporter = () => {
   // Enable jaeger exporter
   const options = {
     serviceName: _serviceName,
-    host: process.env.JAEGER_AGENT_HOST,
-    port: process.env.JAEGER_AGENT_PORT,
+    // host: process.env.JAEGER_AGENT_HOST,
+    // port: process.env.JAEGER_AGENT_PORT,
   };
   const jaegerExporter = new JaegerExporter(options);
   provider.addSpanProcessor(new SimpleSpanProcessor(jaegerExporter));
