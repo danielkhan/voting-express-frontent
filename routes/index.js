@@ -27,6 +27,7 @@ module.exports = () => {
         `http://localhost:3001?choice=${req.query.choice}`,
         (e, r) => {
           if (e) throw e;
+          console.log("RENDER");
           return res.render("index", JSON.parse(r.body));
         }
       );
