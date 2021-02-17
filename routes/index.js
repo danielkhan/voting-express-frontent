@@ -24,11 +24,6 @@ module.exports = () => {
         return res.status(400).end();
       }
 
-      const res = await axios.get(
-        `http://localhost:3001?choice=${req.query.choice}`
-      );
-      console.log(res.data);
-
       const httpres = request.get(
         `http://localhost:3001?choice=${req.query.choice}`,
         (e, r) => {
