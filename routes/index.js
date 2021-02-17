@@ -26,11 +26,12 @@ module.exports = () => {
       const httpres = request.get(
         `http://localhost:3001?choice=${req.query.choice}`,
         (e, r) => {
-          if (e) return next(e);
+          if (e) throw e;
           return res.render("index", JSON.parse(r.body));
         }
       );
     } catch (err) {
+      console.log("ERROR");
       return next(err);
     }
   });
