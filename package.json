@@ -13,6 +13,7 @@
     "@opentelemetry/plugin-express": "^0.13.1",
     "@opentelemetry/plugin-http": "^0.16.0",
     "@opentelemetry/plugin-mongodb": "^0.13.1",
+    "@opentelemetry/plugins-node-core-and-contrib": "^0.13.1",
     "@opentelemetry/tracing": "^0.16.0",
     "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
