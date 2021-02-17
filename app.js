@@ -1,3 +1,12 @@
+const tracing = require("./agent/tracing");
+tracing.init("frontend");
+
+const tracer = tracing.getTracer("frontend");
+
+const app = require("../app");
+const debug = require("debug")("express-frontend:server");
+const http = require("http");
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
